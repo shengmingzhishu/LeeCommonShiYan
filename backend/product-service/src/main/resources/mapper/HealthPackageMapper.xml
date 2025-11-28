@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lingli.product.mapper.HealthPackageMapper">
+
+    <resultMap id="BaseResultMap" type="com.lingli.product.entity.HealthPackage">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="category_id" property="categoryId" jdbcType="BIGINT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="code" property="code" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="original_price" property="originalPrice" jdbcType="DECIMAL"/>
+        <result column="cover_image" property="coverImage" jdbcType="VARCHAR"/>
+        <result column="detail_images" property="detailImages" jdbcType="VARCHAR"/>
+        <result column="test_items" property="testItems" jdbcType="VARCHAR"/>
+        <result column="sampling_method" property="samplingMethod" jdbcType="INTEGER"/>
+        <result column="report_delivery_days" property="reportDeliveryDays" jdbcType="INTEGER"/>
+        <result column="stock" property="stock" jdbcType="INTEGER"/>
+        <result column="sort_order" property="sortOrder" jdbcType="INTEGER"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="created_at" property="createdAt" jdbcType="TIMESTAMP"/>
+        <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP"/>
+        <result column="created_by" property="createdBy" jdbcType="VARCHAR"/>
+        <result column="updated_by" property="updatedBy" jdbcType="VARCHAR"/>
+        <result column="is_deleted" property="isDeleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, category_id, name, code, description, price, original_price, cover_image, detail_images, test_items, sampling_method, report_delivery_days, stock, sort_order, status, created_at, updated_at, created_by, updated_by, is_deleted
+    </sql>
+
+    <!-- 根据分类ID分页查询启用的套餐 -->
+    <select id="selectByCategoryId" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM health_packages
+        WHERE category_id = #{categoryId}
+        AND status = 1
+        AND is_deleted = 0
+        ORDER BY sort_order ASC, id ASC
+        <if test="size > 0">
+            LIMIT #{offset}, #{limit}
+        </if>
+    </select>
+
+    <!-- 搜索套餐（按名称和描述） -->
+    <select id="searchPackages" parameterType="map" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM health_packages
+        WHERE status = 1
+        AND is_deleted = 0
+        AND (
+            name LIKE CONCAT('%', #{keyword}, '%')
+            OR description LIKE CONCAT('%', #{keyword}, '%')
+            OR code LIKE CONCAT('%', #{keyword}, '%')
+        )
+        ORDER BY sort_order ASC, id ASC
+        <if test="size > 0">
+            LIMIT #{offset}, #{limit}
+        </if>
+    </select>
+
+    <!-- 获取热门套餐（按排序和创建时间） -->
+    <select id="selectHotPackages" parameterType="com.baomidou.mybatisplus.extension.plugins.pagination.Page" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM health_packages
+        WHERE status = 1
+        AND is_deleted = 0
+        ORDER BY sort_order ASC, created_at DESC
+        <if test="size > 0">
+            LIMIT #{offset}, #{limit}
+        </if>
+    </select>
+
+    <!-- 获取推荐套餐（根据价格区间和排序） -->
+    <select id="selectRecommendedPackages" parameterType="com.baomidou.mybatisplus.extension.plugins.pagination.Page" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM health_packages
+        WHERE status = 1
+        AND is_deleted = 0
+        AND price BETWEEN 300 AND 1000
+        ORDER BY sort_order ASC, created_at DESC
+        <if test="size > 0">
+            LIMIT #{offset}, #{limit}
+        </if>
+    </select>
+
+</mapper>

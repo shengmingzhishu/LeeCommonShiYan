@@ -1,0 +1,134 @@
+{
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "灵力检测",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/auth/login",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/auth/register",
+      "style": {
+        "navigationBarTitleText": "注册",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/product/list",
+      "style": {
+        "navigationBarTitleText": "体检套餐",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/product/detail",
+      "style": {
+        "navigationBarTitleText": "套餐详情",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/cart/cart",
+      "style": {
+        "navigationBarTitleText": "购物车",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/order/list",
+      "style": {
+        "navigationBarTitleText": "我的订单",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/order/detail",
+      "style": {
+        "navigationBarTitleText": "订单详情",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/user/profile",
+      "style": {
+        "navigationBarTitleText": "个人中心",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/user/samplers",
+      "style": {
+        "navigationBarTitleText": "采样人管理",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    },
+    {
+      "path": "pages/report/list",
+      "style": {
+        "navigationBarTitleText": "检验报告",
+        "navigationBarBackgroundColor": "#4a90e2",
+        "navigationBarTextStyle": "white"
+      }
+    }
+  ],
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#4a90e2",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/icons/home.png",
+        "selectedIconPath": "static/icons/home-active.png"
+      },
+      {
+        "pagePath": "pages/product/list",
+        "text": "套餐",
+        "iconPath": "static/icons/package.png",
+        "selectedIconPath": "static/icons/package-active.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "static/icons/cart.png",
+        "selectedIconPath": "static/icons/cart-active.png"
+      },
+      {
+        "pagePath": "pages/user/profile",
+        "text": "我的",
+        "iconPath": "static/icons/user.png",
+        "selectedIconPath": "static/icons/user-active.png"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "灵力检测",
+    "navigationBarBackgroundColor": "#4a90e2",
+    "backgroundColor": "#f8f8f8"
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {}
+  }
+}
