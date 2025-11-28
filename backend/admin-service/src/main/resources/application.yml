@@ -1,17 +1,17 @@
-# 用户服务配置文件
+# 管理后台服务配置文件
 
 # 服务器配置
 server:
-  port: 8081
+  port: 8086
   servlet:
-    context-path: /api/v1
+    context-path: /admin
   tomcat:
     uri-encoding: UTF-8
 
 # 应用配置
 spring:
   application:
-    name: user-service
+    name: admin-service
 
 # 数据库配置
 spring:
@@ -45,7 +45,7 @@ spring:
     host: localhost
     port: 6379
     password: 
-    database: 0
+    database: 2
     timeout: 3000ms
     lettuce:
       pool:
@@ -68,6 +68,13 @@ mybatis-plus:
       logic-not-delete-value: 0
   mapper-locations: classpath:mapper/**/*Mapper.xml
 
+# 文件上传配置
+spring:
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
 # JWT配置
 jwt:
   secret: mySecretKey123456789012345678901234567890
@@ -77,13 +84,13 @@ jwt:
 # 日志配置
 logging:
   level:
-    com.lingli.user: DEBUG
+    com.lingli.admin: DEBUG
     com.baomidou.mybatisplus: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n"
   file:
-    name: logs/user-service.log
+    name: logs/admin-service.log
     max-size: 100MB
     max-history: 30
 
@@ -123,9 +130,9 @@ spring:
 logging:
   level:
     root: WARN
-    com.lingli.user: INFO
+    com.lingli.admin: INFO
     com.baomidou.mybatisplus: WARN
   file:
-    name: logs/user-service-prod.log
+    name: logs/admin-service-prod.log
     max-size: 500MB
     max-history: 30
